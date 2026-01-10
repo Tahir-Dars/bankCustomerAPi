@@ -9,12 +9,6 @@ import java.util.Optional;
 
 @Service
 public class CustomerServiceLogic {
-    //@ service added
-    //made an instance of repo interface
-    //gave it a constructor based injection
-    //created given methods
-
-
     public final CustomerRepo Customertrepo;
 
     public CustomerServiceLogic(CustomerRepo streptococcus) {
@@ -30,9 +24,8 @@ public class CustomerServiceLogic {
     }
 
     public Customer getCustomerByID(long id) {
-        Optional<Customer> customerOptional = Customertrepo.findById(id);
-        return customerOptional.orElse(null);
-        //note in copy
+        return Customertrepo.findById(id)
+                .orElseThrow(()->new RuntimeException("Customer with ID: "+id+" not found"));
     }
 
     public Customer updateCustomer(long id, Customer updatedCustomer) {
