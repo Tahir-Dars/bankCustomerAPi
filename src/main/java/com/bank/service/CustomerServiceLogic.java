@@ -5,7 +5,6 @@ import com.bank.respository.CustomerRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerServiceLogic {
@@ -24,19 +23,27 @@ public class CustomerServiceLogic {
     }
 
     public Customer getCustomerByID(long id) {
-        return Customertrepo.findById(id)
-                .orElseThrow(()->new RuntimeException("Customer with ID: "+id+" not found"));
+        try {
+            return Customertrepo.findById(id).orElseThrow(() ->
+                    new RuntimeException("Customer with ID: " + id + " not found"));
+        } catch (RuntimeException e) {
+            return null;
+        }
     }
 
     public Customer updateCustomer(long id, Customer updatedCustomer) {
-        return Customertrepo.findById(id).map(existing -> {
-                    existing.setFirstName(updatedCustomer.getFirstName());
-                    existing.setLastName(updatedCustomer.getLastName());
-                    existing.setEmail(updatedCustomer.getEmail());
-                    existing.setPhoneNumber(updatedCustomer.getPhoneNumber());
-                    return Customertrepo.save(existing);
-                }
-        ).orElseThrow(() -> new RuntimeException("Customer with ID: " + id + "Not Found"));
+        try {
+            return Customertrepo.findById(id).map(existing -> {
+                existing.setFirstName(updatedCustomer.getFirstName());
+                existing.setLastName(updatedCustomer.getLastName());
+                existing.setEmail(updatedCustomer.getEmail());
+                existing.setPhoneNumber(updatedCustomer.getPhoneNumber());
+                return Customertrepo.save(existing);
+            }).orElseThrow(() -> new RuntimeException("Customer with ID: " + id + "Not Found"));
+        }
+        catch (RuntimeException e ){
+            return null;
+        }
 
     }
 
