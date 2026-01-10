@@ -1,21 +1,33 @@
-# Bank Customer API
+# Banking Customer API
+A straightforward RESTful API built with Spring Boot to manage bank customer records. This project focuses on the fundamentals of the Spring ecosystem, specifically handling object-to-database persistence and clean REST architecture.
 
-This project is a hands-on demonstration of my journey learning Spring Boot and building backend web applications.
+# 🛠️ The Tech Stack
+- Java (The core)
 
-# What I Learned
+- Spring Boot (Annotations, Dependency Injection)
 
-- Spring Framework Basics: Understanding the foundation of Spring and how it powers Spring Boot.
+- Spring Data JPA (Persistence layer)
 
-- Annotations: Using Spring annotations for dependency injection, REST controllers, and service layers.
+- H2  (Database)
 
-- Spring Boot Basics: Creating and running REST APIs with Spring Boot.
+- Maven (Build & Dependency management)
 
--  Databases & Persistence: Connecting applications to databases and managing data.
+# 🚀 Features
+- The API performs standard CRUD operations on Customer POJOs:
 
-- Spring Data JPA: Using JPA for advanced data management and object-relational mapping.
+- Create: Add new customers to the system.
 
-## About This Project
+- Read: Retrieve all customers or a specific customer by their unique ID.
 
-This project applies the knowledge gained to build a fully functional backend application with REST endpoints, database integration, and persistence logic.
+- - Update: Modify existing customer details.
 
-I hope this project serves as a helpful reference or inspiration for others exploring Spring Boot and backend development.
+Delete: Remove customer records from the database.
+
+# 📁 Project Structure
+###  Model: Contains the POJO (Plain Old Java Object) representing the Customer entity.
+
+### Repository: Extends JpaRepository to handle data access without writing boilerplate SQL.
+
+###  Service: Business logic layer (where the actual work happens).
+
+###  Controller: Defines the REST endpoints and handles incoming HTTP requests.
